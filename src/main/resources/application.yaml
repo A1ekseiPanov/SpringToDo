@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: SpringToDo
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/todo
+    username: postgres
+    password: postgres
+    hikari:
+      maximum-pool-size: 5
+
+  flyway:
+    create-schemas: true
+    schemas: flyway

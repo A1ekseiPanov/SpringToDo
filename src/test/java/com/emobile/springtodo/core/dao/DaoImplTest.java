@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.*;
 @SpringBootTest
 @Transactional
 @Sql("/sql/schema.sql")
-class DaoImplTest {
+class TaskTaskDaoImplTest {
     private final static Task EXPECTED_1 = Task.builder()
             .id(1L)
             .title("title1")

@@ -1,6 +1,5 @@
 package com.emobile.springtodo.core.dao;
 
-import com.emobile.springtodo.core.entity.Status;
 import com.emobile.springtodo.core.entity.Task;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,12 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class DaoImpl implements Dao<Task, Long> {
+public class TaskDaoImpl implements Dao<Task, Long> {
     private static final String SQL_FIND_BY_ID = """
             SELECT id, title, description, status, created, updated  
             FROM dbo.task WHERE id = ?

@@ -1,8 +1,8 @@
 package com.emobile.springtodo.core.mapper;
 
+import com.emobile.springtodo.core.dto.input.TaskRequest;
+import com.emobile.springtodo.core.dto.output.TaskResponse;
 import com.emobile.springtodo.core.entity.Task;
-import com.emobile.springtodo.dto.input.TaskRequest;
-import com.emobile.springtodo.dto.output.TaskResponse;
 
 import java.util.List;
 
@@ -31,5 +31,4 @@ public final class TaskMapper {
                 .description(taskRequest.description())
                 .build();
     }
-
 }

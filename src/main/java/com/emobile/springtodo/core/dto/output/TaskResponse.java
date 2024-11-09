@@ -1,4 +1,4 @@
-package com.emobile.springtodo.dto.output;
+package com.emobile.springtodo.core.dto.output;
 
 import lombok.Builder;
 

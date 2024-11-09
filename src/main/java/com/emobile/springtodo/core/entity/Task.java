@@ -1,7 +1,6 @@
 package com.emobile.springtodo.core.entity;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
@@ -18,6 +17,8 @@ public class Task {
     private String description;
     @Builder.Default
     private String status = Status.CREATED.toString();
-    private LocalDateTime created;
-    private LocalDateTime updated;
+    @Builder.Default
+    private LocalDateTime created = LocalDateTime.now();
+    @Builder.Default
+    private LocalDateTime updated = LocalDateTime.now();
 }

@@ -12,3 +12,5 @@ spring:
   flyway:
     create-schemas: true
     schemas: flyway
+server:
+  port: 8081

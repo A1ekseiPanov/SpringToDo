@@ -19,6 +19,11 @@ public class TaskDaoImpl implements Dao<Task, Long> {
             SELECT id, title, description, status, created, updated  
             FROM dbo.task WHERE id = ?
             """;
+
+    private static final String SQL_FIND_BY_TITLE = """
+            SELECT id, title, description, status, created, updated  
+            FROM dbo.task WHERE title = ?
+            """;
     private static final String SQL_CREATE_TASK = """
             INSERT INTO dbo.task (title, description, status) 
             VALUES (?,?,?)
@@ -40,7 +45,16 @@ public class TaskDaoImpl implements Dao<Task, Long> {
 
     @Override
     public Optional<Task> findById(Long id) {
-        return Optional.ofNullable(jdbc.queryForObject(SQL_FIND_BY_ID, rowMapper(), id));
+        return jdbc.query(SQL_FIND_BY_ID, rowMapper(), id)
+                .stream()
+                .findFirst();
+    }
+
+    @Override
+    public Optional<Task> findByTitle(String title) {
+        return jdbc.query(SQL_FIND_BY_TITLE, rowMapper(), title)
+                .stream()
+                .findFirst();
     }
 
     @Override

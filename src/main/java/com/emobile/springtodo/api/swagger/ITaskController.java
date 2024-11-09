@@ -100,7 +100,8 @@ public interface ITaskController {
                             ))
             }
     )
-    ResponseEntity<List<TaskResponse>> getAllTasks();
+    ResponseEntity<List<TaskResponse>> getAllTasks(Integer pageNumber,
+                                                   Integer pageSize);
 
     @Operation(
             summary = "Сохранение задачи",

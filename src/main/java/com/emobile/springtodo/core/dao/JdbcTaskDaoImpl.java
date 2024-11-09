@@ -41,6 +41,11 @@ public class JdbcTaskDaoImpl implements Dao<Task, Long> {
             UPDATE dbo.task SET title = ?, description= ?, status= ?, updated = ? WHERE id = ?
              """;
 
+    public static final String SQL_FIND_ALL_LIMIT_OFFSET = SQL_FIND_ALL + """
+            LIMIT ?
+            OFFSET ?
+            """;
+
     private final JdbcTemplate jdbc;
 
     @Override
@@ -60,6 +65,11 @@ public class JdbcTaskDaoImpl implements Dao<Task, Long> {
     @Override
     public Iterable<Task> findAll() {
         return jdbc.query(SQL_FIND_ALL, rowMapper());
+    }
+
+    @Override
+    public Iterable<Task> findAll(int limit, int offset) {
+        return jdbc.query(SQL_FIND_ALL_LIMIT_OFFSET, rowMapper(), limit, offset);
     }
 
     @Override

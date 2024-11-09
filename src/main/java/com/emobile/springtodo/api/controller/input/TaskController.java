@@ -29,8 +29,9 @@ public class TaskController implements ITaskController {
 
     @Override
     @GetMapping
-    public ResponseEntity<List<TaskResponse>> getAllTasks() {
-        return ResponseEntity.ok(taskService.getAll());
+    public ResponseEntity<List<TaskResponse>> getAllTasks(@RequestParam(value = "page_number", required = false, defaultValue = "1") Integer pageNumber,
+                                                          @RequestParam(value = "page_size", required = false, defaultValue = "20") Integer pageSize) {
+            return ResponseEntity.ok(taskService.getAll(pageNumber, pageSize));
     }
 
     @Override

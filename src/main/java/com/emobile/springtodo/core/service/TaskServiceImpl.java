@@ -50,6 +50,14 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<TaskResponse> getAll(int pageNumber, int pageSize) {
+        int offset = (pageNumber - 1) * pageSize;
+        log.info("Get all task from database, page number = %d, page size = %d".formatted(pageNumber, pageSize));
+        return fromListEntityToListResponse((List<Task>) dao.findAll(pageSize, offset));
+    }
+
+    @Override
     @CachePut(value = "TaskService::getById", key = "#result.id")
     public TaskResponse create(TaskRequest request) {
         Task task = dao.save(formRequestToEntity(request));

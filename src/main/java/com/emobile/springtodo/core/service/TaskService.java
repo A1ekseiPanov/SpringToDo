@@ -11,6 +11,8 @@ public interface TaskService {
 
     List<TaskResponse> getAll();
 
+    List<TaskResponse> getAll(int pageNumber, int pageSize);
+
     TaskResponse create(TaskRequest request);
 
     void deleteById(Long id);

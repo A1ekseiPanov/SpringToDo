@@ -16,4 +16,6 @@ public interface Dao<E, ID> {
     void update(E entity);
 
     void deleteById(ID id);
+
+    Iterable<E> findAll(int limit, int offset);
 }

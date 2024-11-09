@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class TaskDaoImpl implements Dao<Task, Long> {
+public class JdbcTaskDaoImpl implements Dao<Task, Long> {
     private static final String SQL_FIND_BY_ID = """
             SELECT id, title, description, status, created, updated  
             FROM dbo.task WHERE id = ?

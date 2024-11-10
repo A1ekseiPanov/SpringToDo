@@ -15,7 +15,6 @@ spring:
     password: postgres
     hikari:
       maximum-pool-size: 5
-
   flyway:
     create-schemas: true
     schemas: flyway

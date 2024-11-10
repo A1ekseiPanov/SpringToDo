@@ -16,7 +16,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = CheckValidator.class)
 @Documented
 public @interface CheckStatus {
-    String message() default "{does not correspond to statuses}";
+    String message() default "does not correspond to statuses";
 
     Class<?>[] groups() default {};
 

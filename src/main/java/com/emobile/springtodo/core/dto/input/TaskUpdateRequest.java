@@ -6,9 +6,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.Builder;
 
 import java.io.Serializable;
 
+@Builder
 public record TaskUpdateRequest(
         @Schema(example = "1111")
         @NotNull(message = "task id should not be empty")

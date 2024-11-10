@@ -84,9 +84,8 @@ public class JdbcTaskDaoImpl implements Dao<Task, Long> {
             ps.setString(3, entity.getStatus());
             return ps;
         }, keyHolder);
-        entity.setId((Long) keyHolder.getKey());
 
-        return entity;
+        return jdbc.queryForObject(SQL_FIND_BY_ID, rowMapper(), keyHolder.getKey());
     }
 
     @Override

@@ -15,10 +15,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 import java.util.Map;
 
+import static com.emobile.springtodo.api.controller.input.TaskController.*;
+
 @RestController
-@RequestMapping(value = "/api/tasks/", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = PATH_TASK, produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class TaskController implements ITaskController {
+    public static final String PATH_TASK = "/api/tasks/";
     private final TaskService taskService;
 
     @Override
@@ -29,9 +32,10 @@ public class TaskController implements ITaskController {
 
     @Override
     @GetMapping
-    public ResponseEntity<List<TaskResponse>> getAllTasks(@RequestParam(value = "page_number", required = false, defaultValue = "1") Integer pageNumber,
-                                                          @RequestParam(value = "page_size", required = false, defaultValue = "20") Integer pageSize) {
-            return ResponseEntity.ok(taskService.getAll(pageNumber, pageSize));
+    public ResponseEntity<List<TaskResponse>> getAllTasks(
+            @RequestParam(value = "page_number", required = false, defaultValue = "1") Integer pageNumber,
+            @RequestParam(value = "page_size", required = false, defaultValue = "20") Integer pageSize) {
+        return ResponseEntity.ok(taskService.getAll(pageNumber, pageSize));
     }
 
     @Override
@@ -40,7 +44,7 @@ public class TaskController implements ITaskController {
                                                  UriComponentsBuilder uriComponentsBuilder) {
         TaskResponse response = taskService.create(request);
         return ResponseEntity.created(uriComponentsBuilder
-                        .replacePath("/api/tasks/{taskId}")
+                        .replacePath(PATH_TASK + "{taskId}")
                         .build(Map.of("taskId", response.id())))
                 .body(response);
     }

@@ -17,8 +17,6 @@ public class Task {
     private String description;
     @Builder.Default
     private String status = Status.CREATED.toString();
-    @Builder.Default
-    private LocalDateTime created = LocalDateTime.now();
-    @Builder.Default
-    private LocalDateTime updated = LocalDateTime.now();
+    private LocalDateTime created;
+    private LocalDateTime updated;
 }

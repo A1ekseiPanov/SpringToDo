@@ -53,7 +53,10 @@ public class TaskServiceImpl implements TaskService {
     @Transactional(readOnly = true)
     public List<TaskResponse> getAll(int pageNumber, int pageSize) {
         int offset = (pageNumber - 1) * pageSize;
-        log.info("Get all task from database, page number = %d, page size = %d".formatted(pageNumber, pageSize));
+
+        log.info("Get all task from database, page number = %d, page size = %d"
+                .formatted(pageNumber, pageSize));
+
         return fromListEntityToListResponse((List<Task>) dao.findAll(pageSize, offset));
     }
 
@@ -61,9 +64,10 @@ public class TaskServiceImpl implements TaskService {
     @CachePut(value = "TaskService::getById", key = "#result.id")
     public TaskResponse create(TaskRequest request) {
         Task task = dao.save(formRequestToEntity(request));
+
         log.info("Saving task to database...");
-        TaskResponse response = fromEntityToResponse(task);
-        return response;
+
+        return fromEntityToResponse(task);
     }
 
     @Override
@@ -91,7 +95,7 @@ public class TaskServiceImpl implements TaskService {
         log.info("Get task from database with id=%d".formatted(task.getId()));
 
         task.setTitle(request.title());
-        task.setDescription(task.getDescription());
+        task.setDescription(request.description());
         task.setUpdated(LocalDateTime.now());
         task.setStatus(request.status());
 

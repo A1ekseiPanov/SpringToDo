@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: SpringToDo
+  cache:
+    type: redis
+    cache-names: redis-cache
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: cXdlcnR5MTIzNDVxd2VydHkxMjM0NQ==
+  datasource:
+    url: jdbc:postgresql://localhost:5432/todo
+    username: postgres
+    password: postgres
+    hikari:
+      maximum-pool-size: 5
+  flyway:
+    create-schemas: true
+    schemas: flyway
+server:
+  port: 8081

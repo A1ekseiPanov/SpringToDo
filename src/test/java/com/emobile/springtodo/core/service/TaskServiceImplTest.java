@@ -11,12 +11,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import java.util.Optional;
 
-import static com.emobile.springtodo.core.mapper.TaskMapper.formRequestToEntity;
 import static com.emobile.springtodo.core.mapper.TaskMapper.fromEntityToResponse;
 import static com.emobile.springtodo.util.TestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -90,7 +90,7 @@ class TaskServiceImplTest {
                 .description(EXPECTED_TASK1.getDescription())
                 .build();
 
-        when(dao.save(formRequestToEntity(request))).thenReturn(EXPECTED_TASK1);
+        when(dao.save(Mockito.any(Task.class))).thenReturn(EXPECTED_TASK1);
 
         TaskResponse response = taskService.create(request);
 

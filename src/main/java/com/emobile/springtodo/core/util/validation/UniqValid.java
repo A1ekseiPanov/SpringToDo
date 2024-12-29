@@ -1,18 +1,17 @@
 package com.emobile.springtodo.core.util.validation;
 
 import com.emobile.springtodo.core.annotation.UniqTitle;
-import com.emobile.springtodo.core.dao.Dao;
-import com.emobile.springtodo.core.entity.Task;
+import com.emobile.springtodo.core.repository.TaskRepository;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UniqValid implements ConstraintValidator<UniqTitle, String> {
     @Autowired
-    private Dao<Task, Long> dao;
+    private TaskRepository taskRepository;
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return dao.findByTitle(value).isEmpty();
+        return taskRepository.findByTitle(value).isEmpty();
     }
 }

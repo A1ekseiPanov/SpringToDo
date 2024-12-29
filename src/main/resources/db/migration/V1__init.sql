@@ -9,5 +9,3 @@ CREATE TABLE IF NOT EXISTS dbo.task
     updated     TIMESTAMP DEFAULT now(),
     PRIMARY KEY (id)
 );
-
-CREATE SEQUENCE dbo.ask_seq START WITH 1 INCREMENT BY 1;

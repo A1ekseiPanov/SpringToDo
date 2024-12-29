@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = {TestConfig.class})
 @Sql(scripts = "/sql/schema.sql")
 @Transactional
-class JdbcTaskDaoImplTest {
+class DaoImplTest {
 
     @Autowired
     private Dao<Task, Long> dao;

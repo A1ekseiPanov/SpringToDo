@@ -63,9 +63,13 @@ public class TaskServiceImpl implements TaskService {
     @Override
     @CachePut(value = "TaskService::getById", key = "#result.id")
     public TaskResponse create(TaskRequest request) {
-        Task task = dao.save(formRequestToEntity(request));
+        Task createdTask = formRequestToEntity(request);
+        createdTask.setCreated(LocalDateTime.now());
+        createdTask.setUpdated(LocalDateTime.now());
 
-        log.info("Saving task to database...");
+        Task task = dao.save(createdTask);
+
+        log.info("Saving createdTask to database...");
 
         return fromEntityToResponse(task);
     }

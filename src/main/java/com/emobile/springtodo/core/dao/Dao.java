@@ -2,9 +2,10 @@ package com.emobile.springtodo.core.dao;
 
 import com.emobile.springtodo.core.entity.Task;
 
+import java.io.Serializable;
 import java.util.Optional;
 
-public interface Dao<E, ID> {
+public interface Dao<E, ID extends Serializable> {
     Optional<E> findById(ID id);
 
     Optional<Task> findByTitle(String title);
